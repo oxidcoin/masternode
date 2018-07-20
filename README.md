@@ -1,0 +1,2 @@
+# masternode
+Masternode support files
