@@ -92,7 +92,7 @@ echo ''
 Oxidd -daemon
 
 # Add cronjob
-(crontab -l 2>/dev/null; echo "@reboot sleep 30 && ${USERHOME}/Oxidd -daemon") | crontab -
+(crontab -l 2>/dev/null; echo "@reboot sleep 30 && /usr/bin/Oxidd -daemon") | crontab -
 
 echo ''
 echo '####################################'
