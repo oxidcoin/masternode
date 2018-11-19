@@ -119,10 +119,27 @@ oxidd -daemon
 # Add cronjob
 (crontab -l 2>/dev/null; echo "@reboot sleep 30 && /usr/bin/oxidd -daemon") | crontab -
 
+echo '###########################################'
+echo '#    Syncing VPS wallet..., please wait   #'
+echo '###########################################'
+echo ''
+
+until su -c "oxid-cli mnsync status 2>/dev/null | grep 'IsBlockchainSynced\" : true' > /dev/null" "$USER"; do 
+  echo -ne "Current block: $(su -c "oxid-cli getblockcount" "$USER")\\r"
+  sleep 1
+done
+
+clear
+
 echo '##########################################################################################'
 echo '#    Start masternode/supernode in your local wallet. Waitting for it to be started...   #'
 echo '##########################################################################################'
 echo ''
+
+
+read -rp "Press Enter if your local wallet masternode status is ENABLED. " -n1 -s
+
+echo ""
 
 output="error"
 required_message="Masternode successfully started"

@@ -57,5 +57,5 @@ done
 
 echo ''
 echo '###################################################'
-echo '# Your masternode/supernode setup was sucessful.  #'
+echo '# Your masternode/supernode update was sucessful. #'
 echo '###################################################'

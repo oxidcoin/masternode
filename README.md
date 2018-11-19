@@ -14,3 +14,5 @@ wget https://raw.githubusercontent.com/oxidcoin/masternode/master/update.sh && c
 
 ./update.sh
 ```
+
+## For a full masternode/supernode setup guides visit https://oxid.io
