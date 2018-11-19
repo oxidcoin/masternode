@@ -45,7 +45,7 @@ echo ''
 
 echo "Daemon started"
 
-output="error"
+output=""
 required_message="Masternode successfully started"
 
 while [[ $output != *"$required_message"* ]]

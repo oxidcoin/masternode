@@ -141,7 +141,7 @@ read -rp "Press Enter if your local wallet masternode status is ENABLED. " -n1 -
 
 echo ""
 
-output="error"
+output=""
 required_message="Masternode successfully started"
 
 while [[ $output != *"$required_message"* ]]
