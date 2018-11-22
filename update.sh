@@ -33,6 +33,8 @@ chmod 0755 $USERHOME/oxidd
 chmod 0755 $USERHOME/oxid-cli
 sudo mv $USERHOME/oxidd /usr/bin/oxidd
 sudo mv $USERHOME/oxid-cli /usr/bin/oxid-cli
+rm $USERHOME/.oxidred/mncache.dat
+rm $USERHOME/.oxidred/mnpayments.dat
 
 echo "Updated the daemon"
 
