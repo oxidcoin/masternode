@@ -33,6 +33,20 @@ chmod 0755 $USERHOME/oxidd
 chmod 0755 $USERHOME/oxid-cli
 sudo mv $USERHOME/oxidd /usr/bin/oxidd
 sudo mv $USERHOME/oxid-cli /usr/bin/oxid-cli
+
+echo '####################################'
+echo '#    Removing old files...         #'
+echo '####################################'
+rm -rf $USERHOME/.oxidred/accumulators
+rm -rf $USERHOME/.oxidred/blocks
+rm -rf $USERHOME/.oxidred/chainstate
+rm -rf $USERHOME/.oxidred/database
+rm -rf $USERHOME/.oxidred/sporks
+rm $USERHOME/.oxidred/db.log
+rm $USERHOME/.oxidred/debug.log
+rm $USERHOME/.oxidred/.lock
+rm $USERHOME/.oxidred/oxidd.pid
+rm $USERHOME/.oxidred/peers.dat
 rm $USERHOME/.oxidred/mncache.dat
 rm $USERHOME/.oxidred/mnpayments.dat
 
@@ -47,13 +61,25 @@ echo ''
 
 echo "Daemon started"
 
+echo '###########################################'
+echo '#    Syncing VPS wallet..., please wait   #'
+echo '###########################################'
+echo ''
+
+until su -c "oxid-cli mnsync status 2>/dev/null | grep 'IsBlockchainSynced\" : true' > /dev/null" "$USER"; do 
+  echo -ne "Current block: $(su -c "oxid-cli getblockcount" "$USER")\\r"
+  sleep 1
+done
+
+clear
+
 output=""
 required_message="Masternode successfully started"
 
 while [[ $output != *"$required_message"* ]]
 do
     echo "$output"
-    output="$(oxid-cli masternode status)"
+    output="$(oxid-cli startmasternode local false)"
     sleep 10
 done
 

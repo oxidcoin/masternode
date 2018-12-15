@@ -147,7 +147,7 @@ required_message="Masternode successfully started"
 while [[ $output != *"$required_message"* ]]
 do
     echo "$output"
-    output="$(oxid-cli masternode status)"
+    output="$(oxid-cli startmasternode local false)"
     sleep 10
 done
 
